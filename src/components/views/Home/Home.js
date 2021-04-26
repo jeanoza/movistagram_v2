@@ -3,7 +3,9 @@ import { moviesApi } from "../../../api/api";
 import Poster from "../../utils/Poster";
 import styled from "styled-components";
 import Section from "../../utils/Section";
-
+const Container = styled.div`
+  margin-top: 75px;
+`;
 function Home() {
   const [NowPlaying, setNowPlaying] = useState([]);
   const [Upcoming, setUpcoming] = useState([]);
@@ -35,7 +37,7 @@ function Home() {
   return loading ? (
     <>loading...</>
   ) : (
-    <>
+    <Container>
       <Section title="Now Playing">
         {NowPlaying.map((movie, index) => (
           <Poster
@@ -45,6 +47,7 @@ function Home() {
             poster_url={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
             year={movie.release_date.slice(0, 4)}
             average={movie.vote_average}
+            isMovie={true}
           />
         ))}
       </Section>
@@ -57,6 +60,7 @@ function Home() {
             poster_url={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
             year={movie.release_date.slice(0, 4)}
             average={movie.vote_average}
+            isMovie={true}
           />
         ))}
       </Section>
@@ -69,10 +73,11 @@ function Home() {
             poster_url={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
             year={movie.release_date.slice(0, 4)}
             average={movie.vote_average}
+            isMovie={true}
           />
         ))}
       </Section>
-    </>
+    </Container>
   );
 }
 

@@ -4,6 +4,9 @@ import Poster from "../../utils/Poster";
 import styled from "styled-components";
 import Section from "../../utils/Section";
 
+const Container = styled.div`
+  margin-top: 75px;
+`;
 function Tv() {
   const [AiringToday, setAiringToday] = useState([]);
   const [TopRated, setTopRated] = useState([]);
@@ -35,7 +38,7 @@ function Tv() {
   return loading ? (
     <>loading...</>
   ) : (
-    <>
+    <Container>
       <Section title="Popular">
         {Popular.map((tv, index) => (
           <Poster
@@ -72,7 +75,7 @@ function Tv() {
           />
         ))}
       </Section>
-    </>
+    </Container>
   );
 }
 

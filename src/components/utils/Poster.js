@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const Image = styled.div`
   width: 125px;
@@ -19,7 +20,7 @@ const Average = styled.span`
   bottom: 50px;
   right: 10px;
 `;
-const Container = styled.div`
+const Container = styled(Link)`
   margin: 10px 0px;
   position: relative;
   :hover {
@@ -39,9 +40,9 @@ const Year = styled.div`
   font-size: 10px;
 `;
 
-function Poster({ id, title, year, average, poster_url }) {
+function Poster({ id, title, year, average, poster_url, isMovie }) {
   return (
-    <Container>
+    <Container to={isMovie ? `/movie/${id}` : `/show/${id}`}>
       <Image bgImage={poster_url} />
       <Average>{average}</Average>
       <Title>{title}</Title>
@@ -57,6 +58,7 @@ Poster.propTypes = {
   title: PropTypes.string.isRequired,
   average: PropTypes.number,
   year: PropTypes.string,
+  isMovie: PropTypes.bool,
 };
 
 //https://image.tmdb.org/t/p/w500/

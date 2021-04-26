@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
-import Search from "../Search/Search";
 
 const Container = styled.div`
   width: 100%;
+  position: fixed;
+  top: 0;
   display: flex;
+  background-color: rgb(20, 20, 20);
 `;
 const List = styled.ul`
   display: flex;
@@ -25,13 +27,13 @@ function NavBar({ location: { pathname } }) {
     <Container>
       <List>
         <Link to="/">
-          <Item current={pathname == "/"}>Movie</Item>
+          <Item current={pathname === "/"}>Movie</Item>
         </Link>
         <Link to="/tv">
-          <Item current={pathname == "/tv"}>TV</Item>
+          <Item current={pathname === "/tv"}>TV</Item>
         </Link>
         <Link to="/search">
-          <Item current={pathname == "/search"}>Search</Item>
+          <Item current={pathname === "/search"}>Search</Item>
         </Link>
       </List>
     </Container>
