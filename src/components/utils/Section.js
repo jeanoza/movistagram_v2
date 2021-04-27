@@ -5,11 +5,13 @@ const Container = styled.div`
   margin-top: 25px;
 `;
 const Title = styled.div`
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 18px;
 `;
 const Grid = styled.div`
-  margin-top: 25px;
+  margin-top: 10px;
   display: grid;
+  justify-content: space-evenly;
   grid-template-columns: repeat(auto-fill, 125px);
   grid-gap: 25px;
 `;

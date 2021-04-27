@@ -5,7 +5,9 @@ import styled from "styled-components";
 import Section from "../../utils/Section";
 
 const Container = styled.div`
-  margin-top: 75px;
+  width: 100%;
+  padding: 15px;
+  padding-top: 50px;
 `;
 function Tv() {
   const [AiringToday, setAiringToday] = useState([]);
@@ -45,8 +47,8 @@ function Tv() {
             key={index}
             id={tv.id}
             title={tv.name}
-            poster_url={`https://image.tmdb.org/t/p/w500/${tv.poster_path}`}
-            year={tv.first_air_date.slice(0, 4)}
+            poster_url={tv.poster_path}
+            year={tv.first_air_date}
             average={tv.vote_average}
           />
         ))}
@@ -57,8 +59,8 @@ function Tv() {
             key={index}
             id={tv.id}
             title={tv.name}
-            poster_url={`https://image.tmdb.org/t/p/w500/${tv.poster_path}`}
-            year={tv.first_air_date.slice(0, 4)}
+            poster_url={tv.poster_path}
+            year={tv.first_air_date}
             average={tv.vote_average}
           />
         ))}
@@ -69,8 +71,8 @@ function Tv() {
             key={index}
             id={tv.id}
             title={tv.name}
-            poster_url={`https://image.tmdb.org/t/p/w500/${tv.poster_path}`}
-            year={tv.first_air_date.slice(0, 4)}
+            poster_url={tv.poster_path}
+            year={tv.first_air_date}
             average={tv.vote_average}
           />
         ))}

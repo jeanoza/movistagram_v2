@@ -19,6 +19,7 @@ const Backdrop = styled.div`
   opacity: 0.5;
 `;
 const Main = styled.div`
+  width: 100%;
   margin: 0px 50px;
   display: flex;
   justify-content: space-around;
@@ -68,7 +69,11 @@ function MovieDetail({
       <Backdrop bgImage={`https://image.tmdb.org/t/p/w500/${backdrop_path}`} />
       <Main>
         <DetailPoster
-          bgImage={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+          bgImage={
+            poster_path
+              ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+              : "https://www.i4ce.org/wp-core/wp-content/uploads/2015/09/noimgavailable.jpg"
+          }
         />
         <Text>
           <Title>{name}</Title>

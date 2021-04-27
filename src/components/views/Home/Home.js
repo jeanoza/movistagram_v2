@@ -4,7 +4,9 @@ import Poster from "../../utils/Poster";
 import styled from "styled-components";
 import Section from "../../utils/Section";
 const Container = styled.div`
-  margin-top: 75px;
+  width: 100%;
+  padding: 15px;
+  padding-top: 50px;
 `;
 function Home() {
   const [NowPlaying, setNowPlaying] = useState([]);
@@ -44,8 +46,8 @@ function Home() {
             key={index}
             id={movie.id}
             title={movie.title}
-            poster_url={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-            year={movie.release_date.slice(0, 4)}
+            poster_url={movie.poster_path}
+            year={movie.release_date}
             average={movie.vote_average}
             isMovie={true}
           />
@@ -57,8 +59,8 @@ function Home() {
             key={index}
             id={movie.id}
             title={movie.title}
-            poster_url={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-            year={movie.release_date.slice(0, 4)}
+            poster_url={movie.poster_path}
+            year={movie.release_date}
             average={movie.vote_average}
             isMovie={true}
           />
@@ -70,8 +72,8 @@ function Home() {
             key={index}
             id={movie.id}
             title={movie.title}
-            poster_url={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-            year={movie.release_date.slice(0, 4)}
+            poster_url={movie.poster_path}
+            year={movie.release_date}
             average={movie.vote_average}
             isMovie={true}
           />

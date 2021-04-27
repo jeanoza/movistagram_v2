@@ -8,6 +8,7 @@ const Image = styled.div`
   height: 180px;
   background-image: url(${(props) => props.bgImage});
   background-size: cover;
+  background-position: center;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -43,9 +44,15 @@ const Year = styled.div`
 function Poster({ id, title, year, average, poster_url, isMovie }) {
   return (
     <Container to={isMovie ? `/movie/${id}` : `/show/${id}`}>
-      <Image bgImage={poster_url} />
+      <Image
+        bgImage={
+          poster_url
+            ? `https://image.tmdb.org/t/p/w500/${poster_url}`
+            : "https://www.i4ce.org/wp-core/wp-content/uploads/2015/09/noimgavailable.jpg"
+        }
+      />
       <Average>{average}</Average>
-      <Title>{title}</Title>
+      <Title>{title.length > 20 ? `${title.slice(0, 20)}...` : title}</Title>
       <Year>{year}</Year>
     </Container>
   );

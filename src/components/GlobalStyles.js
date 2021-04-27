@@ -10,6 +10,9 @@ const GlobalStyles = createGlobalStyle`
         background-color:rgb(20,20,20);
         color:rgb(255,255,255);
     }
+    *{
+        box-sizing:border-box;
+    }
 `;
 
 export default GlobalStyles;
