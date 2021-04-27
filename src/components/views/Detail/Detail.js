@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { moviesApi, tvsApi } from "../../../api/api";
 import styled from "styled-components";
-
-const Container = styled.div`
-  width: 100%;
-  height: 95vh;
-  background-image: url(${(props) => props.bgImage});
-  background-size: cover;
-`;
+import MovieDetail from "./Section/MovieDetail";
+import TvDetail from "./Section/TvDetail";
 
 function Detail({
   match: {
@@ -15,7 +10,7 @@ function Detail({
     url,
   },
 }) {
-  const [detail, setDetail] = useState({});
+  const [Result, setResult] = useState({});
   const [loading, setLoading] = useState(true);
   const isMovie = url.slice(0, 6) === "/movie" ? true : false;
   const parsedId = parseInt(id);
@@ -24,10 +19,12 @@ function Detail({
     try {
       if (isMovie) {
         const { data } = await moviesApi.detail(parsedId);
-        setDetail(data);
+        setResult(data);
+        console.log(data);
       } else {
         const { data } = await tvsApi.detail(parsedId);
-        setDetail(data);
+        setResult(data);
+        console.log(data);
       }
     } catch (e) {
       console.log(e);
@@ -42,13 +39,25 @@ function Detail({
   return loading ? (
     "loading..."
   ) : isMovie ? (
-    <Container
-      bgImage={`https://image.tmdb.org/t/p/w500/${detail.backdrop_path}`}
-    ></Container>
+    <MovieDetail
+      backdrop_path={Result.backdrop_path}
+      poster_path={Result.poster_path}
+      title={Result.title}
+      release_date={Result.release_date}
+      genres={Result.genres}
+      runtime={Result.runtime}
+      overview={Result.overview}
+    />
   ) : (
-    <Container
-      bgImage={`https://image.tmdb.org/t/p/w500/${detail.backdrop_path}`}
-    ></Container>
+    <TvDetail
+      backdrop_path={Result.backdrop_path}
+      poster_path={Result.poster_path}
+      name={Result.name}
+      first_air_date={Result.first_air_date}
+      genres={Result.genres}
+      runtime={Result.runtime}
+      overview={Result.overview}
+    />
   );
 }
 
