@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { tvsApi } from "../../../api/api";
 import Poster from "../../utils/Poster";
 import styled from "styled-components";
-import Section from "../../utils/Section";
+import Section from "components/utils/Section";
 
 const Container = styled.div`
   width: 100%;

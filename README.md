@@ -1,6 +1,6 @@
 # Movistagram_version_2.0
 
-## Prologue
+## Abstract
 
 - I do this project for review react & api network
 - Also, if i'm not so busy, i will use redux in this project and transform that with typescript.
