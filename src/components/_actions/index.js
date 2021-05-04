@@ -10,11 +10,13 @@ const api = axios.create({
 const MV_NOW_PLAYING = "movie/now_playing";
 const MV_UPCOMING = "movie/upcoming";
 const MV_POPULAR = "movie/popular";
+const MV_DETAIL = "movie/";
 
 //tv types
 const TV_AIRING_TODAY = "tv/airing_today";
 const TV_POPULAR = "tv/popular";
 const TV_TOP_RATED = "tv/top_rated";
+const TV_DETAIL = "tv/";
 
 //movie action obj
 export const movieAction = {
@@ -51,9 +53,17 @@ export const movieAction = {
       })
       .catch((e) => console.log(e));
   },
+  detail: (dispatch, id) => {
+    api.get(`${MV_DETAIL}/${id}`).then((response) => {
+      dispatch({
+        type: MV_DETAIL,
+        results: response.data,
+      });
+    });
+  },
 };
 
-//movie action obj
+//tv action obj
 export const tvAction = {
   airingToday: (dispatch) => {
     api
@@ -87,5 +97,13 @@ export const tvAction = {
         });
       })
       .catch((e) => console.log(e));
+  },
+  detail: (dispatch, id) => {
+    api.get(`${TV_DETAIL}/${id}`).then((response) => {
+      dispatch({
+        type: TV_DETAIL,
+        results: response.data,
+      });
+    });
   },
 };

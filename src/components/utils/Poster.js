@@ -54,7 +54,7 @@ function Poster({ id, title, year, average, poster_url, isMovie }) {
         />
         <Average>{average}</Average>
         <Title>{title.length > 20 ? `${title.slice(0, 20)}...` : title}</Title>
-        <Year>{year}</Year>
+        <Year>{year.slice(0, 4)}</Year>
       </Link>
     </Container>
   );
@@ -69,5 +69,3 @@ Poster.propTypes = {
   year: PropTypes.string,
   isMovie: PropTypes.bool,
 };
-
-//https://image.tmdb.org/t/p/w500/

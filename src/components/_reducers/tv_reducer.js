@@ -2,6 +2,7 @@
 const TV_AIRING_TODAY = "tv/airing_today";
 const TV_POPULAR = "tv/popular";
 const TV_TOP_RATED = "tv/top_rated";
+const TV_DETAIL = "tv/";
 
 const movie_reducer = (state = {}, action) => {
   switch (action.type) {
@@ -11,6 +12,8 @@ const movie_reducer = (state = {}, action) => {
       return { ...state, topRated: action.results };
     case TV_POPULAR:
       return { ...state, popular: action.results };
+    case TV_DETAIL:
+      return { ...state, detail: action.results };
     default:
       return state;
   }

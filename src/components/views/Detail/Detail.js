@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { moviesApi, tvsApi } from "../../../api/api";
 import styled from "styled-components";
 import MovieDetail from "./Section/MovieDetail";
 import TvDetail from "./Section/TvDetail";
+import { movieAction, tvAction } from "components/_actions";
+import { useDispatch, useSelector } from "react-redux";
 
 function Detail({
   match: {
@@ -10,55 +11,53 @@ function Detail({
     url,
   },
 }) {
-  const [Result, setResult] = useState({});
-  const [loading, setLoading] = useState(true);
   const isMovie = url.slice(0, 6) === "/movie" ? true : false;
   const parsedId = parseInt(id);
+  const dispatch = useDispatch();
+  const { detail } = useSelector((state) => {
+    if (isMovie) return state.movie;
+    else return state.tv;
+  });
 
-  const getDetail = async () => {
-    try {
-      if (isMovie) {
-        const { data } = await moviesApi.detail(parsedId);
-        setResult(data);
-        console.log(data);
-      } else {
-        const { data } = await tvsApi.detail(parsedId);
-        setResult(data);
-        console.log(data);
-      }
-    } catch (e) {
-      console.log(e);
-    } finally {
-      setLoading(false);
-    }
-  };
+  console.log(detail);
 
   useEffect(() => {
-    getDetail();
-  }, []);
-  return loading ? (
-    "loading..."
-  ) : isMovie ? (
-    <MovieDetail
-      backdrop_path={Result.backdrop_path}
-      poster_path={Result.poster_path}
-      title={Result.title}
-      release_date={Result.release_date}
-      genres={Result.genres}
-      runtime={Result.runtime}
-      overview={Result.overview}
-    />
-  ) : (
-    <TvDetail
-      backdrop_path={Result.backdrop_path}
-      poster_path={Result.poster_path}
-      name={Result.name}
-      first_air_date={Result.first_air_date}
-      genres={Result.genres}
-      runtime={Result.runtime}
-      overview={Result.overview}
-    />
-  );
+    if (isMovie) {
+      movieAction.detail(dispatch, parsedId);
+    } else {
+      tvAction.detail(dispatch, parsedId);
+    }
+  }, [dispatch]);
+
+  if (detail === undefined) {
+    return "loading...";
+  } else {
+    if (isMovie)
+      return (
+        <MovieDetail
+          backdrop_path={detail.backdrop_path}
+          poster_path={detail.poster_path}
+          title={detail.title}
+          release_date={detail.release_date}
+          genres={detail.genres}
+          runtime={detail.runtime}
+          overview={detail.overview}
+        />
+      );
+    else {
+      return (
+        <TvDetail
+          backdrop_path={detail.backdrop_path}
+          poster_path={detail.poster_path}
+          name={detail.name}
+          first_air_date={detail.first_air_date}
+          genres={detail.genres}
+          runtime={detail.runtime}
+          overview={detail.overview}
+        />
+      );
+    }
+  }
 }
 
 export default Detail;

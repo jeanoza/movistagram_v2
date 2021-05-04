@@ -2,6 +2,7 @@
 const MV_NOW_PLAYING = "movie/now_playing";
 const MV_UPCOMING = "movie/upcoming";
 const MV_POPULAR = "movie/popular";
+const MV_DETAIL = "movie/";
 
 const movie_reducer = (state = {}, action) => {
   switch (action.type) {
@@ -11,6 +12,8 @@ const movie_reducer = (state = {}, action) => {
       return { ...state, upcoming: action.results };
     case MV_POPULAR:
       return { ...state, popular: action.results };
+    case MV_DETAIL:
+      return { ...state, detail: action.results };
     default:
       return state;
   }
