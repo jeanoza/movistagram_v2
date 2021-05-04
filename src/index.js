@@ -6,8 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import Reducer from "components/_reducers";
-import ReduxThunk from "redux-thunk";
-import logger from "redux-logger";
 
 const store = createStore(Reducer);
 

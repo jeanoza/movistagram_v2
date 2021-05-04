@@ -16,21 +16,14 @@ const Reducer = (state = { number: 0 }, action) => {
 
 export default Reducer;
 */
-//types
-const MV_NOW_PLAYING = "movie/now_playing";
-const MV_UPCOMING = "movie/upcoming";
-const MV_POPULAR = "movie/popular";
 
-const Reducer = (state = {}, action) => {
-  switch (action.type) {
-    case MV_NOW_PLAYING:
-      return { ...state, nowPlaying: action.results };
-    case MV_UPCOMING:
-      return { ...state, upcoming: action.results };
-    case MV_POPULAR:
-      return { ...state, popular: action.results };
-    default:
-      return state;
-  }
-};
-export default Reducer;
+import { combineReducers } from "redux";
+import movie from "./movie_reducer";
+import tv from "./tv_reducer";
+
+const rootReducer = combineReducers({
+  movie,
+  tv,
+});
+
+export default rootReducer;

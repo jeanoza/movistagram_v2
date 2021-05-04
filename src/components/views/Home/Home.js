@@ -4,7 +4,7 @@ import Poster from "../../utils/Poster";
 import styled from "styled-components";
 import Section from "../../utils/Section";
 import { useDispatch, useSelector } from "react-redux";
-import { getNowPlaying, getPopular, getUpcoming } from "components/_actions";
+import { movieAction } from "components/_actions";
 
 const Container = styled.div`
   width: 100%;
@@ -12,13 +12,13 @@ const Container = styled.div`
   padding-top: 50px;
 `;
 
-function Home(props) {
+function Home() {
   const dispatch = useDispatch();
-  const { nowPlaying, upcoming, popular } = useSelector((state) => state);
+  const { nowPlaying, upcoming, popular } = useSelector((state) => state.movie);
   useEffect(() => {
-    getNowPlaying(dispatch);
-    getUpcoming(dispatch);
-    getPopular(dispatch);
+    movieAction.nowPlaying(dispatch);
+    movieAction.upcoming(dispatch);
+    movieAction.popular(dispatch);
   }, [dispatch]);
 
   if (

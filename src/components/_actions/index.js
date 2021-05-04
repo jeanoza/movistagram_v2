@@ -1,16 +1,3 @@
-/*
-//types
-const PLUS = "PLUS";
-const MINUS = "MINUS";
-
-export const plus = () => ({
-  type: PLUS,
-});
-export const minus = () => ({
-  type: MINUS,
-});
-*/
-
 import axios from "axios";
 const api = axios.create({
   baseURL: "https://api.themoviedb.org/3/",
@@ -19,48 +6,86 @@ const api = axios.create({
     language: "en-EN",
   },
 });
-//types
+//movie types
 const MV_NOW_PLAYING = "movie/now_playing";
 const MV_UPCOMING = "movie/upcoming";
 const MV_POPULAR = "movie/popular";
 
-// const actions = {};
-// const getNowPlaying = () => {
-//   return { type: NOW_PLAYING, data };
-// };
+//tv types
+const TV_AIRING_TODAY = "tv/airing_today";
+const TV_POPULAR = "tv/popular";
+const TV_TOP_RATED = "tv/top_rated";
 
-export const getNowPlaying = (dispatch) => {
-  api
-    .get(MV_NOW_PLAYING)
-    .then((response) => {
-      dispatch({
-        type: MV_NOW_PLAYING,
-        results: response.data.results,
-      });
-    })
-    .catch((e) => console.log(e));
+//movie action obj
+export const movieAction = {
+  nowPlaying: (dispatch) => {
+    api
+      .get(MV_NOW_PLAYING)
+      .then((response) => {
+        dispatch({
+          type: MV_NOW_PLAYING,
+          results: response.data.results,
+        });
+      })
+      .catch((e) => console.log(e));
+  },
+  upcoming: (dispatch) => {
+    api
+      .get(MV_UPCOMING)
+      .then((response) => {
+        dispatch({
+          type: MV_UPCOMING,
+          results: response.data.results,
+        });
+      })
+      .catch((e) => console.log(e));
+  },
+  popular: (dispatch) => {
+    api
+      .get(MV_POPULAR)
+      .then((response) => {
+        dispatch({
+          type: MV_POPULAR,
+          results: response.data.results,
+        });
+      })
+      .catch((e) => console.log(e));
+  },
 };
 
-export const getUpcoming = (dispatch) => {
-  api
-    .get(MV_UPCOMING)
-    .then((response) => {
-      dispatch({
-        type: MV_UPCOMING,
-        results: response.data.results,
-      });
-    })
-    .catch((e) => console.log(e));
-};
-
-export const getPopular = (dispatch) => {
-  api
-    .get(MV_POPULAR)
-    .then((response) => {
-      dispatch({
-        type: MV_POPULAR,
-        results: response.data.results,
-      });
-    })
-    .catch((e) => console.log(e));
+//movie action obj
+export const tvAction = {
+  airingToday: (dispatch) => {
+    api
+      .get(TV_AIRING_TODAY)
+      .then((response) => {
+        dispatch({
+          type: TV_AIRING_TODAY,
+          results: response.data.results,
+        });
+      })
+      .catch((e) => console.log(e));
+  },
+  topRated: (dispatch) => {
+    api
+      .get(TV_TOP_RATED)
+      .then((response) => {
+        dispatch({
+          type: TV_TOP_RATED,
+          results: response.data.results,
+        });
+      })
+      .catch((e) => console.log(e));
+  },
+  popular: (dispatch) => {
+    api
+      .get(TV_POPULAR)
+      .then((response) => {
+        dispatch({
+          type: TV_POPULAR,
+          results: response.data.results,
+        });
+      })
+      .catch((e) => console.log(e));
+  },
 };
